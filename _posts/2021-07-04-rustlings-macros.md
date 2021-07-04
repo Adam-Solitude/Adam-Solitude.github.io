@@ -161,4 +161,45 @@ fn main() {
 
 不同的匹配模式后要加分号。
 
+# quiz4
+```rust
+// quiz4.rs
+// This quiz covers the sections:
+// - Modules
+// - Macros
+
+// Write a macro that passes the quiz! No hints this time, you can do it!
+
+// I AM NOT DONE
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_my_macro_world() {
+        assert_eq!(my_macro!("world!"), "Hello world!");
+    }
+
+    #[test]
+    fn test_my_macro_goodbye() {
+        assert_eq!(my_macro!("goodbye!"), "Hello goodbye!");
+    }
+}
+
+```
+这道题就是让我们自己写一个可实现的宏。根据测试代码可知，宏名为my_macro，作用是将输入的字符串拼接到"Hello "后。
+
+所以代码如下：
+
+```rust
+macro_rules! my_macro {
+    ($val:expr) => {
+        "Hello ".to_string() + $val
+    };
+}
+
+```
+编译通过。
+
 更多的宏的类型我们会在实战涉及到。
