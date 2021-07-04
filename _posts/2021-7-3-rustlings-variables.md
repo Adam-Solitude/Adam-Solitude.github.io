@@ -106,7 +106,7 @@ println!("{number:>0width$}", number=1, width=6);          //可以在数字左�
 
 fn main() {
     //let x;
-    let x = 10；
+    let x = 10;
     if x == 10 {
         println!("Ten!");
     } else {
