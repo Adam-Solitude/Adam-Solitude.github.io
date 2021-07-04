@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "rustlings-迭代器和闭包"
-date:   2021-07-04 19:26:31 +0800
+date:   2021-07-04 19:32:31 +0800
 tags:
       - Rust
 ---
