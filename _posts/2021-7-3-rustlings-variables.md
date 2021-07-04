@@ -59,6 +59,45 @@ x is 5
 y is 155
 z is ()
 ```
+println!调用了一个Rust宏,并不是调用函数。若是调用函数，就是println。宏是后面的内容，这里不多说。相对于print！，println！自带换行，并将文本输出到控制台。编译器会检查格式化的正确性。
+
+println!大体用法如下：
+```rust
+println!("Hello, world!");
+println!("{} days", 31);  //若不加后缀，31就自动成为i32类型
+```
+输出：
+```rust
+"Hello, world!"
+31 days
+```
+变量代替字符串有多种写法
+```rust
+println!("{0}, this is {1}. {1}, this is {0}", "Alice", "Bob"); //位置参数
+println!("{subject} {verb} {object}",                           //命名参数
+            object = "the lazy dog",
+            subject = "the quick brown fox",
+            verb = "jump over");
+```
+输出：
+```rust
+Alice, this is Bob. Bob, this is Alice
+the quick brown fox jumps over the lazy dog
+```
+其他用法
+```rust
+println!("{} of {:b} people know binary, the other half don't", 1, 2); //类型指定
+println!("{number:>width$}", number=1, width=6);               //按指定宽度来右对齐文本
+println!("{number:>0width$}", number=1, width=6);          //可以在数字左边补0。语句输出"000001" 
+```
+输出：
+```rust
+1 of 10 people know binary, the other half don't
+     1
+000001
+```
+
+
 # variables2
 ```rust
 // variables2.rs
