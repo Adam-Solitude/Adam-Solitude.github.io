@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "rustlings-generics"
+title:  "rustlings-option"
 date:   2021-07-04 19:22:31 +0800
 tags:
       - Rust
