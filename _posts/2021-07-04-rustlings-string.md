@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "rustlings-string"
-date:   2021-07-04 19:16:31 +0800
+date:   2021-07-04 19:17:31 +0800
 tags:
       - Rust
 ---
