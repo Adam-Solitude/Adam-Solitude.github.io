@@ -21,6 +21,7 @@ fn main() {
     println!("x has the value {}", x);
 }
 ```
+
 少了变量绑定。将let加上。
 
 Rust程序(大部分)由一系列语句构成。Rust有多种语句。最普遍的语句类型有两种：一种是绑定变量，另一种是表达式带上分号：
@@ -32,7 +33,9 @@ x;
 x + 1;
 15;
 ```
+
 代码块也是表达式，所以它们在赋值操作中可以充当右值(r-values)。代码块中的最后一条表达式将赋给左值(l-value)。需要注意的是，如果代码块最后一条表达式结尾处有分号，那么返回值将变成 ()。即单元值。(代码块中的最后一条语句是代码块中实际执行的最后一条语句，而不一定是代码块中最后一行的语句。)
+
 ```rust
 let x = 5u32;
 
@@ -53,12 +56,14 @@ println!("y is {:?}", y);
 println!("z is {:?}", z);
 
 ```
+
 输出：
 ```rust
 x is 5
 y is 155
 z is ()
 ```
+
 println!调用了一个Rust宏,并不是调用函数。若是调用函数，就是println。宏是后面的内容，这里不多说。相对于print！，println！自带换行，并将文本输出到控制台。编译器会检查格式化的正确性。
 
 println!大体用法如下：
@@ -66,11 +71,13 @@ println!大体用法如下：
 println!("Hello, world!");
 println!("{} days", 31);  //若不加后缀，31就自动成为i32类型
 ```
+
 输出：
 ```rust
 "Hello, world!"
 31 days
 ```
+
 变量代替字符串有多种写法
 ```rust
 println!("{0}, this is {1}. {1}, this is {0}", "Alice", "Bob"); //位置参数
@@ -79,17 +86,20 @@ println!("{subject} {verb} {object}",                           //命名参数
             subject = "the quick brown fox",
             verb = "jump over");
 ```
+
 输出：
 ```rust
 Alice, this is Bob. Bob, this is Alice
 the quick brown fox jumps over the lazy dog
 ```
+
 其他用法
 ```rust
 println!("{} of {:b} people know binary, the other half don't", 1, 2); //类型指定
 println!("{number:>width$}", number=1, width=6);               //按指定宽度来右对齐文本
 println!("{number:>0width$}", number=1, width=6);          //可以在数字左边补0。语句输出"000001" 
 ```
+
 输出：
 ```rust
 1 of 10 people know binary, the other half don't
@@ -115,9 +125,12 @@ fn main() {
 }
 
 ```
+
 Rust中不允许只声明不赋值，Rust编译器会对代码作基本的静态分支流程分析，确保变量在使用之前一定被初始化。x没有绑定任何值，这样的代码会引起很多内存不安全的问题，比如计算结果非预期、程序崩溃，所以Rust编译器必须报错。
 
 此处未对变量进行显式的类型声明，则整型默认为i32类型。若是浮点数则默认为i64类型。
+
+后续会专门讲解if分支。
 
 # variables3
 ```rust
@@ -131,11 +144,13 @@ fn main() {
     println!("Number {}", x);
 }
 ```
+
 let声明后的变量默认是不可变的。Rust是静态强类型语言，这就决定了在运行程序前Rust便需要知道所有变量的类型，而且不会自动将一个变量类型转为另一个类型。但是Rust可以根据上下文推断类型。
 ```rust
 let mut inferred_type = 12; //根据下一行的赋值推断为i64类型
 inferred_type = 4294967296i64;   
 ```
+
 扯远了。。我们想创建可修改的变量就加mut即可。mut修饰的变量具有可变性，mut修饰对应内存可以修改。所以上面x前加mut。
 
 虽然mut的变量可变，但是类型不可变。下面的实例会报错。
@@ -146,10 +161,12 @@ mutable = 21; //不报错
 //下面这句会报错，因为变量的类型并不能改变。
 mutable = true;
 ```
+
 但是我们可以通过变量遮蔽来修改类型，都是后话。
 ```rust
 let mutable = true;
 ```
+
 # variables4
 ```rust
 // variables4.rs
@@ -160,9 +177,11 @@ fn main() {
     println!("Number {}", x);
 }
 ```
+
 这个也是典型的光声明没初始化。不过通过这里我们可以提一下Rust类型的声明。
 
 数字可以通过后缀或默认方式来声明类型，如下：
+
 ```rust
 let logical: bool = true;
 let a_float: f64 = 1.0;  //常规说明
@@ -201,6 +220,7 @@ fn main() {
 }
 
 ```
+
 这里即是考察了前文所述的变量遮蔽。我们无法对number进行修改，就算加mux，我们也不能将number从String类型变为i32类型。所以这里采用变量遮蔽的方式。
 
 ```rust
@@ -211,6 +231,7 @@ fn main() {
     println!("Number plus two is : {}", number + 2);
 }
 ```
+
 # variables6
 ```rust
 // variables6.rs
@@ -222,6 +243,7 @@ fn main() {
 }
 
 ```
+
 这里简单考察了const。变量可以给出类型说明，有常规说明和后缀说明，在没有给出说明的情况就按默认方式决定类型(let)。
 
 但const必须指定变量类型，不能省略。而且const命名方式倾向于全部大写，否则编译器会给出警告。
