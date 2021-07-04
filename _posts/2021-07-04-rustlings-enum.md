@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "rustlings-enum"
-date:   2021-07-04 13:16:31 +0800
+date:   2021-07-04 14:16:31 +0800
 tags:
       - Rust
 ---
