@@ -33,6 +33,11 @@ mod tests {
     }
 }
 ```
+
+这里大家能注意到fn前多了一个pub。Rust中有两种简单的访问权：公共(public)和私有(private)。这个pub就代表公共。后续会详细讲解。
+
+还有下面的mod。Rust中的组织单位是模块(Module)，#[cfg(test)]是模块的对应注解。这些先略过，我们主要关注目前的具体问题。
+
 Rust的if表达式和C/C++差不多。只是多注意返回值就可以了。assert_eq!函数将bigger的返回值和10进行比较，所以if花括号里的表达式也是i32。
 
 因为if是个表达式，它有返回值，所以可以放在let的右侧，绑定在变量上。实例如下：
@@ -65,6 +70,7 @@ pub fn bigger(a: i32, b: i32) -> i32 {
 
 }
 ```  
+
 需要注意的是if-else分支必须完备，如果单只有一个if，其他分支未覆盖全的话，编译器会认定有不走if的情况，从而报错。这个在C中有可能是警告。因为在C中如果返回值是整数或指针类型，就会默认返回0并抛出警告，若不能强制返回0的话才会报错。
 
 Rust编译器 yyds
@@ -120,6 +126,7 @@ pub fn fizz_if_foo(fizzish: &str) -> &str {
     }  
 }
 ```
+
 # Quiz1
 ```rust
 // quiz1.rs
@@ -146,6 +153,7 @@ fn verify_test() {
     assert_eq!(65, price3);
 }
 ```
+
 这个程序逻辑很简单，就是对购买数量进行一个if判断，返回值不同而已。
 ```rust
 pub fn calculate_apple_price(prices:i32) -> i32 {
