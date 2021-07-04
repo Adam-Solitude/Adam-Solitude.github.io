@@ -248,4 +248,28 @@ fn main() {
 
 但const必须指定变量类型，不能省略。而且const命名方式倾向于全部大写，否则编译器会给出警告。
 
-常数还是后话。
+Rust有两种常量，可以在任意作用域声明，包括全局作用域。它们都需要显式的类型声明：
+* const：不可改变的值
+* static：具有'static生命周期的，可以是可变的变量(要加mut)
+
+有个特例就是string字面量。它可以不经改动就被赋给一个static变量，因为它的类型标记：&'static str就包含了所要求的生命周期'static。其他的引用类型都必须特地声明，使之拥有'static 生命周期。这两种引用类型的差异似乎也无关紧要，因为无论如何，static 变量都得显式地声明。
+
+示例：
+```rust
+//全局变量是在在所有其他作用域之外声明的。
+static LANGUAGE: &'static str = "Rust";
+const  THRESHOLD: i32 = 10;
+
+fn is_big(n: i32) -> bool {
+    // 在一般函数中访问常量
+    n > THRESHOLD
+}
+
+fn main() {
+    let n = 16;
+    // 在 main 函数（主函数）中访问常量
+    println!("This is {}", LANGUAGE);
+    println!("The threshold is {}", THRESHOLD);
+    println!("{} is {}", n, if is_big(n) { "big" } else { "small" });
+}
+```
